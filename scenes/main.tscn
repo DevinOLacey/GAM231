@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ci1gv273h24r4"]
+[gd_scene load_steps=20 format=4 uid="uid://ci1gv273h24r4"]
 
 [ext_resource type="PackedScene" uid="uid://c3y630yco5woj" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://c1jkb6d13it4n" path="res://assests/tilesets/tileset.png" id="2_0wfyh"]
@@ -471,6 +471,21 @@ sources/0 = SubResource("TileSetAtlasSource_tefeu")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
 
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(215, -26)]
+}
+
 [sub_resource type="Animation" id="Animation_tbgi4"]
 resource_name = "move"
 length = 2.0
@@ -488,7 +503,13 @@ tracks/0/keys = {
 "values": [Vector2(215, -26), Vector2(286, -26)]
 }
 
-[sub_resource type="Animation" id="Animation_tefeu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
+_data = {
+&"RESET": SubResource("Animation_tefeu"),
+&"move": SubResource("Animation_tbgi4")
+}
+
+[sub_resource type="Animation" id="Animation_tipki"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -500,16 +521,34 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(215, -26)]
+"values": [Vector2(376, -21)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
+[sub_resource type="Animation" id="Animation_o6xl0"]
+resource_name = "move"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(376, -21), Vector2(376, 35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85g3d"]
 _data = {
-&"RESET": SubResource("Animation_tefeu"),
-&"move": SubResource("Animation_tbgi4")
+&"RESET": SubResource("Animation_tipki"),
+&"move": SubResource("Animation_o6xl0")
 }
 
 [node name="Main" type="Node2D"]
+position = Vector2(-2, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(58, 23)
@@ -614,3 +653,15 @@ position = Vector2(66, -10)
 
 [node name="slab4" parent="." instance=ExtResource("6_tefeu")]
 position = Vector2(35, -10)
+
+[node name="platform6" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(376, -21)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="platform6"]
+libraries = {
+&"": SubResource("AnimationLibrary_85g3d")
+}
+autoplay = "move"
+
+[node name="coin12" parent="." instance=ExtResource("4_jyhfs")]
+position = Vector2(184, 10)
