@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://xo5dueoljkcw"]
+
+[ext_resource type="Script" uid="uid://wj1css7c1y6i" path="res://scripts/power_fruit.gd" id="1_n17pn"]
+[ext_resource type="Texture2D" uid="uid://da2ku05ynowgp" path="res://assests/items/fruit.png" id="2_m5nlm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42i4x"]
+radius = 6.0827627
+
+[node name="powerFruit" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_n17pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_m5nlm")
+region_enabled = true
+region_rect = Rect2(19.967472, 31.988977, 9.044743, 16.020437)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 6)
+shape = SubResource("CircleShape2D_42i4x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
