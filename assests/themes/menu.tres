@@ -1,0 +1,71 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://6xg4psw20cf3"]
+
+[ext_resource type="FontFile" uid="uid://cp24x3ocgy48h" path="res://assests/fonts/PixelOperator8.ttf" id="1_7g2jo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvvwq"]
+bg_color = Color(0.33036852, 0.7360205, 0.4478535, 1)
+skew = Vector2(1, 0)
+shadow_color = Color(0.25882354, 0.7411765, 0.30588236, 1)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7g2jo"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.25882354, 0.7411765, 0.30588236, 1)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tav4d"]
+bg_color = Color(0, 0.93345517, 0.28816164, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgh4a"]
+bg_color = Color(0, 0.93333334, 0.28627452, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u0yn"]
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0.5261907, 0.5246618, 0.480658, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g2jo"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tummg"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.24840015, 0.24840021, 0.24840006, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.3397705, 0.631719, 0.42669243, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.34117648, 0.6313726, 0.42745098, 1)
+shadow_size = 20
+
+[resource]
+default_font = ExtResource("1_7g2jo")
+default_font_size = 28
+Button/styles/hover = SubResource("StyleBoxFlat_vvvwq")
+Button/styles/normal = SubResource("StyleBoxFlat_7g2jo")
+HBoxContainer/constants/separation = 198
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_tav4d")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_mgh4a")
+HSlider/styles/slider = SubResource("StyleBoxFlat_4u0yn")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 48
+Label/styles/normal = SubResource("StyleBoxEmpty_7g2jo")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_tummg")
+VBoxContainer/constants/separation = 30

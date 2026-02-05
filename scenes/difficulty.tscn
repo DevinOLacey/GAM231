@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwpc4akojc2fv"]
+
+[ext_resource type="Theme" uid="uid://6xg4psw20cf3" path="res://assests/themes/menu.tres" id="1_ebcsn"]
+[ext_resource type="Script" uid="uid://3pod2c686rys" path="res://scripts/difficulty.gd" id="2_q0d2u"]
+
+[node name="Difficulty" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ebcsn")
+script = ExtResource("2_q0d2u")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select a Difficulty"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Easy" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Easy"
+
+[node name="Hard" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Hard"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Hard" to="." method="_on_hard_pressed"]

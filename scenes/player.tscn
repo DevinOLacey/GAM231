@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3y630yco5woj"]
+[gd_scene load_steps=23 format=3 uid="uid://c3y630yco5woj"]
 
 [ext_resource type="Texture2D" uid="uid://88a0dxnl68v1" path="res://assests/characters/DinoSprites - doux.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhmcpgjd4isod" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://bgq704qpemlau" path="res://assests/sounds/sfx_hurt.ogg" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://ceh87uufpa138" path="res://assests/sounds/sfx_jump.ogg" id="4_dqkch"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_3vyb7")
@@ -148,9 +150,17 @@ script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"run"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_fjrip")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qhqgy")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dqkch")
+bus = &"SFX"

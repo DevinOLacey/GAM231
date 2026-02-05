@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://xo5dueoljkcw"]
+[gd_scene load_steps=5 format=3 uid="uid://xo5dueoljkcw"]
 
 [ext_resource type="Script" uid="uid://wj1css7c1y6i" path="res://scripts/power_fruit.gd" id="1_n17pn"]
 [ext_resource type="Texture2D" uid="uid://da2ku05ynowgp" path="res://assests/items/fruit.png" id="2_m5nlm"]
+[ext_resource type="AudioStream" uid="uid://v00i5keus1y0" path="res://assests/sounds/sfx_gem.ogg" id="3_m5nlm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42i4x"]
 radius = 6.0827627
@@ -19,5 +20,9 @@ region_rect = Rect2(19.967472, 31.988977, 9.044743, 16.020437)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 6)
 shape = SubResource("CircleShape2D_42i4x")
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_m5nlm")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

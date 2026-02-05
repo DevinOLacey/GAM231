@@ -5,12 +5,13 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	print("You died!")
 	Engine.time_scale = 0.5
-	body.get_node("CollisionShape2D").queue_free()
-	#if body.has_node("AnimatedSprite2D"):
-		#body.animated_sprite.play("death")
-		#await body.animated_sprite.animation_finished
-	timer.start()
+	
 
+	if body.has_method("die"):
+		body.die()
+	
+
+	timer.start()
 
 
 func _on_timer_timeout() -> void:

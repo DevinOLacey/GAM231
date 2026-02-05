@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 const SPEED = 60
 const bounce_velocity = -350.0
 
@@ -12,6 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var stomp_area: Area2D = $StompArea
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,14 +52,20 @@ func _on_stomp_area_body_entered(body: Node) -> void:
 
 func _ready() -> void:
 	stomp_area.body_entered.connect(_on_stomp_area_body_entered)
+	animation_player.animation_finished.connect(_on_animation_finished)
 	
 
 func _die() -> void:
+	if dead:
+		return
 	dead = true
 	velocity = Vector2.ZERO
 	$CollisionShape2D.disabled = true
 	$killzone/CollisionShape2D.disabled = true
 	$StompArea/CollisionShape2D.disabled = true
-	animated_sprite.play("death")
-	await animated_sprite.animation_finished
-	queue_free()
+	animation_player.play("death")
+
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == "death":
+		died.emit()
+		queue_free()

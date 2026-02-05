@@ -5,19 +5,26 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
 var power := false
-
+var is_dead := false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var death: AudioStreamPlayer2D = $Death
+@onready var jump: AudioStreamPlayer2D = $Jump
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		jump.play()
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -47,3 +54,10 @@ func _physics_process(delta: float) -> void:
 
 func add_power() -> void:
 	power = true
+	
+func die():
+	is_dead = true
+	animated_sprite.play("death")
+	death.play()
+	if is_instance_valid(collision_shape_2d):
+		collision_shape_2d.queue_free()
